@@ -17,16 +17,16 @@ import java.util.Collection;
 @Service
 public class SalesOrderHandler {
 
-    AuthorizationProvider authorizationProvider;
-    CreditCardValidator creditCardValidator;
+    IAuthorizationProvider authorizationProvider;
+    ICreditCardValidator creditCardValidator;
     ISalesOrderRepository salesOrderRepository;
 
     @Autowired
-    public SalesOrderHandler(ISalesOrderRepository salesOrderRepository) {
+    public SalesOrderHandler(ISalesOrderRepository salesOrderRepository, IAuthorizationProvider authorizationProvider, ICreditCardValidator creditCardValidator) {
 
         this.salesOrderRepository = salesOrderRepository;
-        authorizationProvider = new AuthorizationProvider();
-        creditCardValidator = new CreditCardValidator();
+        this.authorizationProvider = authorizationProvider;
+        this.creditCardValidator = creditCardValidator;
     }
 
     public boolean CompleteSale(SalesOrder salesOrder, CardInfo cardInfo) {

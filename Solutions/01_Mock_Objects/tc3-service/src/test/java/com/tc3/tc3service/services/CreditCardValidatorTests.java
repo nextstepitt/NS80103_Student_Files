@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-// @API(status = EXPERIMENTAL)
 public class CreditCardValidatorTests {
 
     private CreditCardValidator cardValidator;
@@ -57,12 +56,6 @@ public class CreditCardValidatorTests {
 
         cardInfo.setCardNumber(cardNumber);
         assertFalse(cardValidator.validateCardInfo(cardInfo));
-    }
-
-    @RepeatedTest(3)
-    public void exampleLatencyTest() {
-
-        assertTimeout(Duration.ofMillis(1000), () -> { Thread.sleep(500); });
     }
 
     @Test

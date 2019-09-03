@@ -4,6 +4,7 @@
 
 package com.tc3.tc3service.services;
 
+import com.tc3.tc3service.__doubles__.AuthorizationProviderStub;
 import com.tc3.tc3service.dao.ISalesOrderRepository;
 import com.tc3.tc3service.models.CardInfo;
 import com.tc3.tc3service.models.SalesOrder;
@@ -18,6 +19,7 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class SalesOrderHandlerTests {
@@ -29,10 +31,16 @@ public class SalesOrderHandlerTests {
     @Mock
     private ISalesOrderRepository salesOrderRepository;
 
+    private IAuthorizationProvider authorizationProvider;
+
+    @Mock
+    private ICreditCardValidator creditCardValidator;
+
     @BeforeEach
     public void setup() {
 
-        salesOrderHandler = new SalesOrderHandler(salesOrderRepository);
+        authorizationProvider = new AuthorizationProviderStub();
+        salesOrderHandler = new SalesOrderHandler(salesOrderRepository, authorizationProvider, creditCardValidator);
 
         // The shared cardInfo is initialzed to valid data. The test methods will replace one value at a time
         // with invalid data to test it. Test doubles are not required to stand in for data objects, only for
@@ -51,6 +59,8 @@ public class SalesOrderHandlerTests {
     public void acceptsValidSalesOrderAndCardIsAuthorized() {
 
         cardInfo.setCardNumber("378282246310005");
+        when(creditCardValidator.validateCardInfo(cardInfo)).thenReturn(true);
+
         assertTrue(salesOrderHandler.CompleteSale(salesOrder, cardInfo));
     }
 
@@ -72,6 +82,8 @@ public class SalesOrderHandlerTests {
     public void rejectsValidSalesOrderWithInvalidCard() {
 
         cardInfo.setCardNumber("378282246310006");
+        when(creditCardValidator.validateCardInfo(cardInfo)).thenReturn(false);
+
         assertFalse(salesOrderHandler.CompleteSale(salesOrder, cardInfo));
     }
 
@@ -79,6 +91,8 @@ public class SalesOrderHandlerTests {
     public void rejectsValidSalesOrderButValidCardIsNotAuthorized() {
 
         cardInfo.setCardNumber("2221001223630333");
+        when(creditCardValidator.validateCardInfo(cardInfo)).thenReturn(false);
+
         assertFalse(salesOrderHandler.CompleteSale(salesOrder, cardInfo));
     }
 }
