@@ -17,9 +17,9 @@ import java.util.Collection;
 @Service
 public class SalesOrderHandler {
 
-    AuthorizationProvider authorizationProvider;
-    CreditCardValidator creditCardValidator;
-    ISalesOrderRepository salesOrderRepository;
+    private AuthorizationProvider authorizationProvider;
+    private CreditCardValidator creditCardValidator;
+    private ISalesOrderRepository salesOrderRepository;
 
     @Autowired
     public SalesOrderHandler(ISalesOrderRepository salesOrderRepository) {

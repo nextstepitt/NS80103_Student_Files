@@ -1,13 +1,12 @@
 ![](.common/nsbanner.png?raw=true)
 
-# [Insert Course Number] [Insert Course Title] - Student Files
+# NS80103 Mock Objects - Student Files
 
-This project contains the lab framework for the [insert course title] class.
+This project contains the lab framework for the Mock Objects presentation.
 You may clone the framework or download a zip of the framework on this page.
-There are working solutions for all of the labs, and example projects, that may be a good reference for building React programs
-with TypeScript even if you are not interested in the course.
+There are working solutions for all of the labs that may be a good reference for building JUnit test fixtures even if you are not interested in the course.
 
-Do the rapidly changing landscape of [insert technologies: React, TypeScript, and web application programming in general], this material is updated frequently.
+Do the rapidly changing landscape of [insert technologies: Java, JUnit, and Cucumber, this material is updated frequently.
 Feel free to come back and download new versions whenever you want to.
 
 ## License
@@ -21,28 +20,21 @@ monitors or working in an environment with a projection screen to follow what th
 
 ### Required Software Configuration
 
-* Provide instructions on the tools and software that must be installed for the course labs to work. 
+* Java 12 JDK
+* Eclipse or IntelliJ IDEA with Maven 
 
 ## Student Files Folder Layout
 
 ```
 Student_Files
 │
-└── [Insert Course Title]
-    └── Examples
-    │    └── 02_[insert chapter title]
-    │    └── ...
-    │ 
+└── NS80102_Student_Files
     └── Labs
     │       .gitignore
     │ 
-    └── Resources
-    │    └── 02_[insert chapter title]
-    │    └── ...
-    │ 
     └── Solutions
-        └── 01_Overview
-        └── 02_[insert chapter title]
+        └── 01_Testing
+        └── 02_JUnit
         └── ...
 ```
 
@@ -53,8 +45,9 @@ Student_Files
 
 ## Running the Solutions
 
-[Provide detailed instructions on how to run the solutions, for eaxample run "npm install" in each solution folder to install
-the necessary node packages, then "npm start" to launch the application.]
+The solutions are all Java 12 Maven projects.
+This course is all about the tests, so we focus on those.
+Import each solution as a Maven project into IntelliJ IDEA or Eclipse, build, and run the tests.
 
 <hr>
-Copyright © [Insert copyright years] NextStep IT Training. All rights reserved.
+Copyright © 2019 NextStep IT Training. All rights reserved.
